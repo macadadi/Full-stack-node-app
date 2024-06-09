@@ -13,11 +13,16 @@ function App() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : occurred</p>;
   return (
-    <Container  >
+    <Container maxWidth='xl'>
       <NavBar />
-      <Grid container spacing={2}>
-        {data?.books.map((book, index) => <BookCard key={index} {...book} />)}
-      </Grid>
+      <Container sx={{
+        mt: 12
+      }}
+      >
+        <Grid container spacing={2}>
+          {data?.books.map((book, index) => <BookCard key={index} {...book} />)}
+        </Grid>
+      </Container>
     </Container>
 
 
