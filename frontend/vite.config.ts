@@ -11,7 +11,7 @@ export default defineConfig({
       src: path.resolve(__dirname, './'),
       containers: path.resolve(__dirname, './src/containers'), //
       components: path.resolve(__dirname, './src/components'), //
-
+      api: path.resolve(__dirname, './src/api'), //
     },
   },
 })

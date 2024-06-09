@@ -9,7 +9,8 @@
      "paths": {
         "*": ["*"],
         "containers/*": ["containers/*"],
-        "components/*": ["components/*"]
+        "components/*": ["components/*"],
+        "utils/*": ["utils/*"],
       },
     /* Bundler mode */
     "moduleResolution": "bundler",

@@ -1,4 +1,5 @@
-import { Grid, Skeleton } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
+import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
 
 
@@ -22,7 +23,7 @@ const ImageLoader = ({ src, placeholder, alt }: { src: string, placeholder: stri
         alt={alt}
         style={{ width: '100%' }}
       /> : <Grid item sx={{ height: { xs: '210px', md: '230px' } }}>
-         <Skeleton animation="wave" variant="rectangular" style={{ width: '100%', height: '100%', maxWidth: '500px', maxHeight: '300px' }} />
+        <Skeleton animation="wave" variant="rectangular" style={{ width: '100%', height: '100%', maxWidth: '500px', maxHeight: '300px' }} />
       </Grid>
       }
     </>
