@@ -1,28 +1,26 @@
 
+import { Container, Grid, Paper } from '@mui/material';
+import useGetBooks from './api/queries';
 import './App.css'
-import { useQuery, gql } from '@apollo/client';
+import BookCard from 'containers/BookCard';
+import NavBar from 'components/NavBar';
 
 
-const GET_BOOKS = gql`
-query ExampleQuery{
-  books{
-    author
-    title
-    readingLevel
-  }
-}
-`;
 function App() {
 
-  const { loading, error, data } = useQuery(GET_BOOKS);
+  const { loading, error, data } = useGetBooks();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : occurred</p>;
-  console.log(data, 'Hello Data')
   return (
-    <>
-      <text>Our react application </text>
-    </>
+    <Container  >
+      <NavBar />
+      <Grid container spacing={2}>
+        {data?.books.map((book, index) => <BookCard key={index} {...book} />)}
+      </Grid>
+    </Container>
+
+
   )
 }
 
