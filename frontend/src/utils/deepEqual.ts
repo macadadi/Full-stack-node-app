@@ -1,5 +1,9 @@
+import { MyObject } from "types";
 
-export const deepEqual = (obj1: unknown, obj2: unknown) => {
+export const deepEqual = (
+  obj1: MyObject | string | null,
+  obj2: MyObject | string | null
+) => {
   if (obj1 === obj2) {
     return true; // Both are identical (same reference or both null/undefined)
   }
@@ -13,8 +17,8 @@ export const deepEqual = (obj1: unknown, obj2: unknown) => {
     return false; // One is an object and the other is not
   }
 
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
+  const keys1: string[] | MyObject[] = Object.keys(obj1);
+  const keys2: string[] | MyObject[] = Object.keys(obj2);
 
   if (keys1.length !== keys2.length) {
     return false; // Different number of keys

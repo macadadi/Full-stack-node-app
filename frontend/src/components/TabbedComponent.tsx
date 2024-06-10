@@ -1,13 +1,10 @@
-import { Box, Tab, Tabs } from '@mui/material';
-import * as React from 'react';
+import { Box, Stack, Tab, Tabs } from '@mui/material';
+import { customPanelTypes, TabbedComponentProps } from 'types';
 
-
-
-export function CustomTabPanel(props) {
-  const { children, value, index, ...other } = props;
-
+export function CustomTabPanel(props: customPanelTypes) {
+  const { children, value, index,height, ...other } = props;
   return (
-    <div
+    <Stack
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -15,11 +12,11 @@ export function CustomTabPanel(props) {
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
+    </Stack>
   );
 }
 
-export default function TabbedComponent({ children , value, handleChange}) {
+export default function TabbedComponent({ children, value, handleChange }: TabbedComponentProps ){
   return (
     <Box sx={{ width: '100%' }}>
       <Tabs
@@ -29,8 +26,8 @@ export default function TabbedComponent({ children , value, handleChange}) {
         indicatorColor="secondary"
         aria-label="secondary tabs example"
       >
-        <Tab value={0} label="Item One" />
-        <Tab value={1} label="Item Two" />
+        <Tab value={0} label="All Books" />
+        <Tab value={1} label="Favorite Books" />
       </Tabs>
       {children}
     </Box>
