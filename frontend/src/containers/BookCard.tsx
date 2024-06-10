@@ -11,14 +11,15 @@ interface BookCardProps extends Book {
 }
 
 function BookCard({ title, coverPhotoURL, author, addItem, readingLevel, removeItem }: BookCardProps) {
+  const book = { title, coverPhotoURL, author, readingLevel }
   return (
     <Grid item xs={6} sm={4} md={3}>
       <Paper>
         <ImageLoader src={`../../${coverPhotoURL}`} placeholder="https://via.placeholder.com/150" alt="book cover" />
         <Typography textAlign="center">{title}</Typography>
         <Typography>{author}</Typography>
-        <button onClick={() => addItem({ title, coverPhotoURL, author, readingLevel })}>Add</button>
-        <button onClick={() => removeItem({ title, coverPhotoURL, author, readingLevel })}>Remove</button>
+        <button onClick={() => addItem(book)}>Add</button>
+        <button onClick={() => removeItem(book)}>Remove</button>
       </Paper >
     </Grid >
   )
