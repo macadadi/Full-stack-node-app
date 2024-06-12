@@ -3,7 +3,7 @@ import { useFilterBooks } from 'api/queries';
 import EOSearchInput from 'components/EOSearchInput'
 import ScrollableGrid from 'components/ScrollableGrid';
 import { CustomTabPanel } from 'components/TabbedComponent'
-import { BookCard } from 'containers';
+import BookCard from 'containers/BookCard';
 import { useState } from 'react';
 
 function LandingPage({ value }: { value: number }) {
@@ -22,7 +22,7 @@ function LandingPage({ value }: { value: number }) {
 
         {data?.map((book, index) => <BookCard
           key={`${index}-${book.title}`}
-          {...book} />
+          book={book} />
         )}
       </ScrollableGrid>
     </CustomTabPanel>

@@ -8,7 +8,7 @@ function SideFilter({ name, grade }: SideFilterProps) {
       display: 'flex',
       justifyContent: 'center',
       cursor: 'pointer',
-      background: grade === 1 ? '#CFFAFA' : ''
+      bgcolor: grade === 1 ? 'primary.main' : '',
     }}
       elevation={3}>
       <Stack alignItems={'center'} display={'flex'} flexDirection={'row'}

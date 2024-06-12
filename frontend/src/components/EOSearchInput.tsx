@@ -2,13 +2,13 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useGetBooks } from 'api/queries';
-import Stack  from '@mui/material/Stack';
+import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useDebounce } from '../utils/useDebounce';
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { EOSearchInputProps } from 'types';
+import { useDebounce } from 'utils/hooks/useDebounce';
 
-export default function EOSearchInput({ setSearch, disabled }: EOSearchInputProps ) {
+export default function EOSearchInput({ setSearch, disabled }: EOSearchInputProps) {
   const { data, loading } = useGetBooks()
   const [valueTest, setValueTest] = useState('')
   const options = useMemo(() => data?.books, [data])
@@ -22,6 +22,7 @@ export default function EOSearchInput({ setSearch, disabled }: EOSearchInputProp
     >
       <Autocomplete
         id="asynchronous-demo"
+        freeSolo
         sx={{
           width: {
             xs: '100%',
@@ -31,12 +32,17 @@ export default function EOSearchInput({ setSearch, disabled }: EOSearchInputProp
           },
         }}
         disabled={disabled}
-        getOptionLabel={(option) => option.title}
+        getOptionLabel={(option) => typeof option === 'string' ? option : option.title}
         options={options || []}
         loading={loading}
         onInputChange={(_, newInputValue) => {
           setValueTest(newInputValue);
         }}
+        renderOption={(props, option) => (
+          <li {...props} key={`${option.title}-${option.author}`}>
+            {option.title}
+          </li>
+        )}
         renderInput={(params) => (
           <TextField
             {...params}

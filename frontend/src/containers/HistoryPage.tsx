@@ -2,8 +2,9 @@
 import EOSearchInput from "components/EOSearchInput"
 import ScrollableGrid from "components/ScrollableGrid";
 import { CustomTabPanel } from "components/TabbedComponent"
-import { BookCard } from "containers";
-import { appContext } from "./main";
+import BookCard from "containers/BookCard";
+import { appContext } from "context/Context";
+
 import { useContext } from "react";
 
 function HistoryPage({ value }: { value: number }) {
@@ -17,7 +18,7 @@ function HistoryPage({ value }: { value: number }) {
 
         {items?.map((book, index) => <BookCard
           key={`${index}-${book.title}`}
-          {...book} />
+          book={book} />
         )}
       </ScrollableGrid>
     </CustomTabPanel>

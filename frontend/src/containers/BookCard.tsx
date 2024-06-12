@@ -2,28 +2,29 @@
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import ImageLoader from 'components/ImageLoader'
-import { Book } from 'types'
-import { Box, Button, Stack } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { appContext } from '../main';
+import ImageLoader from 'components/ImageLoader'
+import { appContext } from 'context/Context';
 import { useContext } from 'react';
+import { Book } from 'types'
 
-function BookCard({ title, coverPhotoURL, author, readingLevel }: Book) {
-  const book = { title, coverPhotoURL, author, readingLevel }
+function BookCard({ book }: { book: Book }) {
   const { addItem, removeItem, hasItem } = useContext(appContext)
   return (
-    <Grid item xs={6} sm={4} md={3}
+    <Grid item xs={12} sm={6} md={4} lg={3} xl={2}
     >
       <Paper sx={{
         borderRadius: 4,
       }}
       >
-        <ImageLoader src={`../../${coverPhotoURL}`} placeholder="https://via.placeholder.com/150" alt="book cover" />
+        <ImageLoader src={`../../${book?.coverPhotoURL}`} placeholder="https://via.placeholder.com/150" alt="book cover" />
         <Stack>
           <Box sx={{
             display: 'flex',
@@ -57,7 +58,7 @@ function BookCard({ title, coverPhotoURL, author, readingLevel }: Book) {
               variant="subtitle1" component="h6"
               lineHeight={1.2}
               fontSize={'1rem'}
-            >{title}</Typography>
+            >{book?.title}</Typography>
           </Box>
           <Box
             sx={{
@@ -74,7 +75,7 @@ function BookCard({ title, coverPhotoURL, author, readingLevel }: Book) {
               lineHeight={1.2}
               fontSize={'1rem'}
               fontWeight={'bold'}
-            >{author}</Typography>
+            >{book?.author}</Typography>
           </Box>
         </Stack>
         {hasItem(book) ?
@@ -82,21 +83,21 @@ function BookCard({ title, coverPhotoURL, author, readingLevel }: Book) {
             sx={{
               borderRadius: 0,
               borderBottomLeftRadius: 16,
-              fontSize: '0.8rem',
+              fontSize: '0.7rem',
               lineHeight: 1.2
             }}
             endIcon={<RemoveIcon />}
             color='error'
-          >Remove From Favorites </Button> :
+          >Remove From Reading List </Button> :
           <Button variant="contained" onClick={() => addItem(book)}
             sx={{
               borderRadius: 0,
               borderBottomLeftRadius: 16,
-              fontSize: '.8rem',
+              fontSize: '.7rem',
               lineHeight: 1.2
             }}
             endIcon={<AddIcon />}
-          >Add To Favorites </Button>}
+          >Add To Reading List </Button>}
       </Paper >
     </Grid >
   )

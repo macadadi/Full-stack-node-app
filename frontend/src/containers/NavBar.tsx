@@ -13,7 +13,8 @@ import { useTheme } from '@mui/material';
 import { ColorModeContext } from '../theme';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
-import { settings } from '../utils/constants';
+import { settings } from 'utils/helpers/constants';
+
 
 
 function NavBar() {
@@ -26,13 +27,13 @@ function NavBar() {
   };
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
-  
+
   return (
     <AppBar position="fixed" sx={{
       backgroundColor: 'background.paper',
     }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{justifyContent:'flex-end'}}>
+        <Toolbar disableGutters sx={{ justifyContent: 'flex-end' }}>
           <Box>
             <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
               {theme.palette.mode === 'dark' ? <WbSunnyIcon
@@ -43,42 +44,6 @@ function NavBar() {
                 }} />}
             </IconButton>
           </Box>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

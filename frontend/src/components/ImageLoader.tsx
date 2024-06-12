@@ -1,7 +1,10 @@
 import Skeleton from '@mui/material/Skeleton';
 import Grid from '@mui/material/Grid';
+import CardMedia from '@mui/material/CardMedia';
+
 import { useState, useEffect } from 'react';
 import { ImageLoaderProps } from 'types';
+
 
 
 const ImageLoader = ({ src, placeholder, alt, maxWidth = '500px', maxHeight = '300px' }: ImageLoaderProps) => {
@@ -19,7 +22,8 @@ const ImageLoader = ({ src, placeholder, alt, maxWidth = '500px', maxHeight = '3
 
   return (
     <>
-      {imageLoaded ? <img
+      {imageLoaded ?<CardMedia
+        component="img"
         src={imageSrc}
         alt={alt}
         style={{

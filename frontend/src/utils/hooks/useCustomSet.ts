@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { deepEqual } from "./deepEqual";
 import { MyObject } from "types";
+import { deepEqual } from "utils/helpers/deepEqual";
 
 export function useCustomSet<T extends string | MyObject | null>() {
   const [currentSet, setCurrentSet] = useState<T[]>([]);
@@ -10,7 +10,7 @@ export function useCustomSet<T extends string | MyObject | null>() {
   });
 
   const addItem = (item: T) => {
-    if (hasItem(item) || isAdding || isRemoving) return;
+    if (hasItem(item)) return;
     setAction(prev => ({ ...prev, isAdding: true }));
     setCurrentSet(prevSet => [...prevSet, item]);
     setTimeout(() => {
@@ -19,7 +19,7 @@ export function useCustomSet<T extends string | MyObject | null>() {
   };
 
   const removeItem = (item: T) => {
-    if (!hasItem(item) || isAdding || isRemoving) return;
+    if (!hasItem(item)) return;
     setAction(prev => ({ ...prev, isRemoving: true }));
     setCurrentSet(prevSet => prevSet.filter(obj => !deepEqual(obj, item)));
     setTimeout(() => {

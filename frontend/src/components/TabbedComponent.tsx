@@ -1,8 +1,8 @@
-import { Box, Stack, Tab, Tabs } from '@mui/material';
+import { Box, Stack, Tabs } from '@mui/material';
 import { customPanelTypes, TabbedComponentProps } from 'types';
 
 export function CustomTabPanel(props: customPanelTypes) {
-  const { children, value, index,height, ...other } = props;
+  const { children, value, index, height, ...other } = props;
   return (
     <Stack
       role="tabpanel"
@@ -16,20 +16,27 @@ export function CustomTabPanel(props: customPanelTypes) {
   );
 }
 
-export default function TabbedComponent({ children, value, handleChange }: TabbedComponentProps ){
+const Tab = ({ value, handleChange, children }: TabbedComponentProps) => {
+  return (
+    <Tabs
+      value={value}
+      onChange={handleChange}
+      textColor="secondary"
+      indicatorColor="secondary"
+      aria-label="secondary tabs example"
+    >
+      {children}
+    </Tabs>
+  )
+}
+
+function TabbedComponent({ children }: { children: React.ReactNode }) {
   return (
     <Box sx={{ width: '100%' }}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-      >
-        <Tab value={0} label="All Books" />
-        <Tab value={1} label="Favorite Books" />
-      </Tabs>
       {children}
     </Box>
   );
 }
+
+TabbedComponent.Tab = Tab
+export default TabbedComponent;

@@ -24,7 +24,7 @@ export const deepEqual = (
     return false; // Different number of keys
   }
 
-  for (let key of keys1) {
+  for (const key of keys1) {
     if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) {
       return false; // Key not found in both objects or values are not equal
     }

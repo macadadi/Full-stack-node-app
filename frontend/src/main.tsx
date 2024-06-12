@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './index.css'
+
 
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { MUContextProvider } from './theme.tsx';
-import { useCustomSet } from './utils/useCustomSet.ts';
-import { Book, MainAppContext } from 'types/index.js';
+import { Book } from 'types/index.js';
+import { useCustomSet } from 'utils/hooks/useCustomSet.ts';
+import { appContext } from 'context/Context.ts';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000',
@@ -20,8 +21,7 @@ if (isDev) {
   loadDevMessages();
   loadErrorMessages();
 }
-const appContext = React.createContext<MainAppContext>({} as MainAppContext)
-export { appContext }
+
 
 const AppWithContext = () => {
   const appState = useCustomSet<Book>();

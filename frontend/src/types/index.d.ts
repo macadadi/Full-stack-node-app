@@ -23,7 +23,7 @@ export type customPanelTypes = {
   height?: number | string;
 };
 export type TabbedComponentProps = {
-  children: ReactNode;
+  children: ExtendButtonBase<TabTypeMap<{}, "div">>[];
   value: number;
   handleChange: (event: React.SyntheticEvent, newValue: number) => void;
 };
@@ -45,7 +45,6 @@ export type SideFilterProps = {
   name: string;
   grade: number;
 };
-
 
 export interface GridProps {
   children: ReactNode;
