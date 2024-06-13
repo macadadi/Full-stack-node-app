@@ -7,7 +7,7 @@ import ImageLoader from './ImageLoader'
 function ScrollableGrid({ children, isLoading }: GridProps) {
   return (
     <Grid container spacing={2} sx={{ overflowY: 'scroll', }}
-      maxHeight={'90vh'} mt={2}>
+      maxHeight={'90vh'} mt={2} pb={2}>
       {isLoading ? <Stack textAlign={'center'}
         spacing={2}
         alignItems={'center'}

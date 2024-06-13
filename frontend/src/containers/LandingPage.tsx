@@ -10,7 +10,7 @@ function LandingPage({ value }: { value: number }) {
   const [search, setSearch] = useState<string>('');
   const { loading, error, data } = useFilterBooks(search);
 
-  if (error) return <p>Error : occurred</p>;
+  if (error) return <p>Error : please ensure that backend is running on port 4000</p>;
   return (
     <CustomTabPanel value={value} index={0}
       height={'100%'}>
